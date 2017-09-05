@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!--html document in english-->
+<html lang="en">
+    <head>
+        <!--meta data, character set and viewport-->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!--page title, appears in tab/top of page-->
+        <title>Quiz</title>
+
+        <!--link to external reset css, removes browser-specific styling-->
+        <link type="text/css" rel="stylesheet" href="assets/css/reset.css">
+
+        <!--link to bootstrap CDN external css-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!--optional theme link for bootstrap-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+        <!--link to external style sheet-->
+        <link type="text/css" rel="stylesheet" href="assets/css/style.css">
+
+        <!--link to external jquery CDN for use in javascript file-->
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <!--link to external javascript file used to dynamically update the page-->
+        <script type="text/javascript" src="assets/javascript/app.js"></script>
+    </head>
+
+    <body>
+        <header id="questionNumber" class="container">
+            Quiz: On the first page, it displays a welcome message.
+            <!--On consequent pages, it shows the current question number.-->
+            <!--After user input or time up, cycles to a page with the right answer and whether the input was correct.-->
+            <!--On the last page, it shows that the game is over.-->
+        </header>
+
+        <section class="container">
+            <div id="question">
+                This is where the question will go.
+                <!--The first screen will describe the rules and the timer.-->
+                <!--Consequent screens will show the current question.-->
+                <!--After user input or time up, cycles to a page with the right answer and whether the input was correct.-->
+                <!--The last page will show statistics from the game. Maybe I can add a share button.-->
+            </div>
+
+            <div id="timer">
+                This is where the timer will go.
+                <!--It refreshes for every new question.-->
+                <!--When the timer reaches 0 seconds, the page cycles.-->
+            </div>
+
+            <!--start button, shown at first, but is not displayed once clicked-->
+            <button type="button" class="btn col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" id="start">
+                Start
+            </button>
+
+            <!--answer choice buttons, hidden at beginning, show after start button is clicked-->
+            <button type="button" class="btn answerbtn col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" id="answer1">
+                This is where the first answer choice will go.
+            </button>
+
+            <button type="button" class="btn answerbtn col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" id ="answer2">
+                This is where the second answer choice will go.
+            </button>
+
+            <button type="button" class="btn answerbtn col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" id="answer3">
+                This is where the third answer choice will go.
+            </button>
+
+            <button type="button" class="btn answerbtn col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" id="answer4">
+                This is where the fourth answer choice will go.
+            </button>
+        </section>
+    </body>
+</html>
