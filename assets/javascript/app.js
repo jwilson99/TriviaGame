@@ -47,21 +47,32 @@ function start() {
     $("#answer2").html(questions[questionNumber].choices[1]);
     $("#answer3").html(questions[questionNumber].choices[2]);
     $("#answer4").html(questions[questionNumber].choices[3]);
-    questionNumber = 1;
 }
 
 function userAnswer () {
     stop();
+    //answerCheck();
+    if ($(this).text() === questions[questionNumber].answer) {
+        alert("correct!");
+    }
+    else {
+        alert("wrong!");
+    }
+    questionNumber += 1;
     $("#question").html(questions[questionNumber].question);
     $("#answer1").html(questions[questionNumber].choices[0]);
     $("#answer2").html(questions[questionNumber].choices[1]);
     $("#answer3").html(questions[questionNumber].choices[2]);
     $("#answer4").html(questions[questionNumber].choices[3]);
-    questionNumber += 1;
     time = 30;
     $("#timer").html(time);
     start();
+    console.log($(this).text());
 }
+
+//function answerCheck() {
+
+//}
 
 function runCountdown() {
     countdownthing = setInterval(countdown, 1000);
