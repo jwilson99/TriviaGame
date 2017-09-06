@@ -1,3 +1,4 @@
+/*adds styling to buttons when the use hovers over a choice*/
 button:hover {
     background-color: blue;
     color: white;
