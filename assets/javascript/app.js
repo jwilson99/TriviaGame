@@ -4,21 +4,120 @@
 var questions = [
 
     {
-        "question":"This is the question?",
-        "choices":["A","B","C","D"],
-        "answer":"A"
+        "question":"King of Gods",
+        "choices":["Jupiter","Mars","Sol","Saturn"],
+        "answer":"Jupiter",
+        "number":"1/13",
+        "fact":"Father of pretty much the entirety of Rome by now. (Like seriously... try to tone it down, Jupiter)",
+        "image":'assets/images/jupiter.jpg'
     },
 
     {
-        "question":"This is a different question?",
-        "choices":["A2","B2","C2","D2"],
-        "answer":"B2"
+        "question":"Goddess of agriculture",
+        "choices":["Vervactor","Saturn","Ceres","Flora"],
+        "answer":"Ceres",
+        "number":"2/13",
+        "fact":"Known as the mother of Persopina. Every Fall and Winter, her grieving causes the leaves to fall.",
+        "image":'assets/images/ceres.jpg'
     },
 
     {
-        "question":"This is the third question?",
-        "choices":["A3","B3","C3","D3"],
-        "answer":"C3"
+        "question":"God of fire, metalworking, and the forge",
+        "choices":["Mars","Vulcan","Vertumnus","Ops"],
+        "answer":"Vulcan",
+        "number":"3/13",
+        "fact":"Had his own festival, Vulcanalia, held August 23rd every year. He sure does look a lot like that Greek God, Hephaestus...",
+        "image":'assets/images/vulcan.jpg'
+    },
+
+    {
+        "question": "Goddess of wisdom, poetry, and medicine",
+        "choices": ["Minerva", "Diana", "Apollo", "Genius"],
+        "answer": "Minerva",
+        "number": "4/13",
+        "fact": "Turned a girl into a spider for beating her in a weaving contest. I probably would just leave Minerva alone whenever possible...",
+        "image":'assets/images/minerva.jpg'
+    },
+
+    {
+        "question":"Goddess of love",
+        "choices":["Cupid","Diana","Juno","Venus"],
+        "answer":"Venus",
+        "number":"5/13",
+        "fact":"Said to be born from sea foam. Wife to Vulcan and mother of both Cupid and Aeneas. They are very different from one another...",
+        "image":'assets/images/venus.jpg'
+    },
+
+    {
+        "question":"God of war",
+        "choices":["Jupiter","Vulcan","Apollo","Mars"],
+        "answer":"Mars",
+        "number":"6/13",
+        "fact":"Also Venus's lover. Hmm... Maybe there's a reason Cupid and Aeneas are so different...",
+        "image":'assets/images/mars.jpg'
+    },
+
+    {
+        "question":"God of the sun, poetry, and oracles",
+        "choices":["Apollo","Summanus","Salus","Neptune"],
+        "answer":"Apollo",
+        "number":"7/13",
+        "fact":"Was said to carry the sun across the sky in a chariot. There was some debate as to whether it was Apollo or Sol carrying the sun, but Apollo is more frequently referenced.",
+        "image":'assets/images/apollo.jpg'
+    },
+
+    {
+        "question":"God of the sea and fresh water",
+        "choices":["Hades","Neptune","Fortuna","Ops"],
+        "answer":"Neptune",
+        "number":"8/13",
+        "fact":"Creator of horses and had an unfortunate affair with Medusa... Well, she's made of snakes now, so... Thanks again, Minerva. (Seriously. Don't even cross paths with Minerva.)",
+        "image":'assets/images/neptune.jpg'
+    },
+
+    {
+        "question":"God of the underworld",
+        "choices":["Proserpina","Saturn","Mars","Pluto"],
+        "answer":"Pluto",
+        "number":"9/13",
+        "fact":"Given the worst kingdom of the three children of Saturn. He also has a pretty neat three-headed dog.",
+        "image":'assets/images/pluto.jpg'
+    },
+
+    {
+        "question":"God of wine and drunken revelry",
+        "choices":["Maia","Bacchus","Uranus","Janus"],
+        "answer":"Bacchus",
+        "number":"10/13",
+        "fact":"His mother was mortal and his father was Zeus (surprise surprise). Jupiter gave birth to him from his leg... I can see why he drinks.",
+        "image":'assets/images/bacchus.jpg'
+    },
+
+    {
+        "question":"Goddess and protector of women",
+        "choices":["Venus","Ceres","Juno","Diana"],
+        "answer":"Juno",
+        "number":"11/13",
+        "fact":"Sister and wife to Jupiter. History depicts her in many roles and epithets, leading to some confusion as to just where her roles and talents end.",
+        "image":'assets/images/juno.jpg'
+    },
+
+    {
+        "question":"Goddess of the hunt and the moon",
+        "choices":["Vesta","Apollo","Mercury","Diana"],
+        "answer":"Diana",
+        "number":"12/13",
+        "fact":"Known as a virgin goddess, alongside Vesta and Minerva. There is a branch of Wicca celebrating Diana's feminine energy.",
+        "image":'assets/images/diana.jpg'
+    },
+
+    {
+        "question":"God of travel/trade and messenger to the Gods",
+        "choices":["Vesta","Uranus","Mercury","Fortuna"],
+        "answer":"Mercury",
+        "number":"13/13",
+        "fact":"A guide of the souls into the underworld. He's also known as a trickster God. I'm not sure he was the best choice as escort.",
+        "image":'assets/images/mercury.jpeg'
     }
 ];
 
@@ -34,6 +133,10 @@ var wrongAnswers = 0;
 var rightAnswers = 0;
 //initialized unanswered questions to 0
 var unanswered = 0;
+
+
+//variable for storing the answer return
+var answerFact = "The correct answer was " + questions[questionNumber].answer +"<br>" + "<img src=" + questions[questionNumber].image + ">" + "<br>" + questions[questionNumber].fact;
 
 //on window load, hide answer choice buttons, add click event
 window.onload = function() {
@@ -61,6 +164,8 @@ function start() {
     $("#start").css("display","none");
     //timer starts counting down from 15s
     runCountdown();
+    //show question number
+    $("#questionNumber").html("<h1>Question " + questions[questionNumber].number + "</h1>");
     //the first question is shown
     $("#question").html(questions[questionNumber].question);
     //the answer choices for the first question are shown
@@ -104,17 +209,17 @@ function questionEnd() {
     //if answer is correct
     if (answerCorrect === true) {
         //screen shows use was correct
-        $("#questionNumber").html("Correct");
+        $("#questionNumber").html("<h1>Correct</h1>");
         //screen shows the correct answer
-        $("#question").html("The correct answer was " + questions[questionNumber].answer);
+        $("#question").html(answerFact);
         //runs a function that shows the next question and restarts timer
         runNextQuestion();
     }
     else {
         //screen shows use was wrong
-        $("#questionNumber").html("Wrong!");
+        $("#questionNumber").html("<h1>Wrong!</h1>");
         //screen shows the correct answer
-        $("#question").html("The correct answer was " + questions[questionNumber].answer);
+        $("#question").html(answerFact);
         //runs a function that shows the next question and restarts timer
         runNextQuestion();
     }
@@ -125,12 +230,16 @@ function nextQuestion() {
     //the question number is increased, prepping for the next place in the question array
     questionNumber += 1;
     if (questionNumber === questions.length) {
-        $("#questionNumber").html("Quiz over!");
+        $("#questionNumber").html("<h1>Quiz over!</h1>");
         //shows what the correct answer was
         $("#question").html("Correct answers: " + rightAnswers + "<br>Wrong answers: " + wrongAnswers + "<br>Unanswered: " + unanswered);
         $(".resetbtn").css("display","initial");
     }
     else {
+        //update answerFact
+        answerFact = "The correct answer was " + questions[questionNumber].answer +"<br>" + "<img src=" + questions[questionNumber].image + ">" + "<br>" + questions[questionNumber].fact;
+        //resets header
+        $("#questionNumber").html("<h1>Question " + questions[questionNumber].number + "</h1>");
         //shows next question
         $("#question").html(questions[questionNumber].question);
         //shows next answer choices
@@ -167,9 +276,9 @@ function countdown() {
         $(".answerbtn").css("display","none");
         $("#timer").hide();
         //show the user that they have run out of time
-        $("#questionNumber").html("Time up!");
+        $("#questionNumber").html("<h1>Time up!</h1>");
         //shows what the correct answer was
-        $("#question").html("The correct answer was " + questions[questionNumber].answer);
+        $("#question").html(answerFact);
         //increases unanswered question count by 1
         unanswered += 1;
         //shows the next question and restarts timer
