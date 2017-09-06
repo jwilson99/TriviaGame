@@ -33,6 +33,7 @@ window.onload = function() {
     $(".answerbtn").click(userAnswer);
     //initializes time left to 30 seconds
     $("#timer").html(time);
+    var answerCorrect;
 };
 
 
@@ -51,28 +52,50 @@ function start() {
 
 function userAnswer () {
     stop();
-    //answerCheck();
+
     if ($(this).text() === questions[questionNumber].answer) {
-        alert("correct!");
+        answerCorrect = true;
     }
     else {
-        alert("wrong!");
+        answerCorrect = false;
     }
+
+    questionEnd();
+
+    time = 30;
+    $("#timer").html(time);
+}
+
+function questionEnd() {
+    $(".answerbtn").css("display","none");
+    if (answerCorrect === true) {
+        $("#questionNumber").html("Correct");
+        $("#question").html("The correct answer was " + questions[questionNumber].answer);
+        runNextQuestion();
+    }
+    else {
+        $("#questionNumber").html("Wrong!");
+        $("#question").html("The correct answer was " + questions[questionNumber].answer);
+        runNextQuestion();
+    }
+}
+
+function nextQuestion() {
     questionNumber += 1;
+
     $("#question").html(questions[questionNumber].question);
+
     $("#answer1").html(questions[questionNumber].choices[0]);
     $("#answer2").html(questions[questionNumber].choices[1]);
     $("#answer3").html(questions[questionNumber].choices[2]);
     $("#answer4").html(questions[questionNumber].choices[3]);
-    time = 30;
-    $("#timer").html(time);
+
     start();
-    console.log($(this).text());
 }
 
-//function answerCheck() {
-
-//}
+function runNextQuestion() {
+    nextQuestionCountdown = setTimeout(nextQuestion, 3000);
+}
 
 function runCountdown() {
     countdownthing = setInterval(countdown, 1000);
@@ -83,7 +106,12 @@ function countdown() {
     $("#timer").html(time);
     if (time === 0) {
         stop();
-        alert("Time Up!");
+        $(".answerbtn").css("display","none");
+        $("#questionNumber").html("Time up!");
+        $("#question").html("The correct answer was " + questions[questionNumber].answer);
+        runNextQuestion();
+        time = 30;
+        $("#timer").html(time);
     }
 }
 
