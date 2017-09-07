@@ -44,7 +44,7 @@ var questions = [
         "choices":["Cupid","Diana","Juno","Venus"],
         "answer":"Venus",
         "number":"5/13",
-        "fact":"Said to be born from sea foam. Wife to Vulcan and mother of both Cupid and Aeneas. They are very different from one another...",
+        "fact":"Said to be born from sea foam. Wife to Vulcan and mother of both Cupid and Aeneas. Her kids are very different from one another...",
         "image":'assets/images/venus.jpg'
     },
 
@@ -71,7 +71,7 @@ var questions = [
         "choices":["Hades","Neptune","Fortuna","Ops"],
         "answer":"Neptune",
         "number":"8/13",
-        "fact":"Creator of horses and had an unfortunate affair with Medusa... Well, she's made of snakes now, so... Thanks again, Minerva. (Seriously. Don't even cross paths with Minerva.)",
+        "fact":"Creator of horses. He had an unfortunate affair with Medusa... She's made of snakes now, so... Thanks again, Minerva. (Seriously. Don't even cross paths with Minerva.)",
         "image":'assets/images/neptune.jpg'
     },
 
@@ -80,7 +80,7 @@ var questions = [
         "choices":["Proserpina","Saturn","Mars","Pluto"],
         "answer":"Pluto",
         "number":"9/13",
-        "fact":"Given the worst kingdom of the three children of Saturn. He also has a pretty neat three-headed dog.",
+        "fact":"Given the worst kingdom of the three children of Saturn. He also has a pretty neat three-headed dog though.",
         "image":'assets/images/pluto.jpg'
     },
 
@@ -136,13 +136,15 @@ var unanswered = 0;
 
 
 //variable for storing the answer return
-var answerFact = "The correct answer was " + questions[questionNumber].answer +"<br>" + "<img src=" + questions[questionNumber].image + ">" + "<br>" + questions[questionNumber].fact;
+var answerFact = "The correct answer was " + questions[questionNumber].answer + "." + "<br>" + "<img src=" + questions[questionNumber].image + ">" + "<br>" + questions[questionNumber].fact;
 
 //on window load, hide answer choice buttons, add click event
 window.onload = function() {
-    //answer buttons hidden
+    //answer buttons and reset button hidden
     $(".answerbtn").css("display","none");
     $(".resetbtn").css("display","none");
+    //timer hidden
+    $("#timer").hide();
     //click event for start button
     $("#start").click(start);
     //click event for answer buttons
@@ -162,6 +164,8 @@ function start() {
     $(".answerbtn").css("display","initial");
     //start button is hidden
     $("#start").css("display","none");
+    //shows timer
+    $("#timer").show();
     //timer starts counting down from 15s
     runCountdown();
     //show question number
@@ -209,7 +213,7 @@ function questionEnd() {
     //if answer is correct
     if (answerCorrect === true) {
         //screen shows use was correct
-        $("#questionNumber").html("<h1>Correct</h1>");
+        $("#questionNumber").html("<h1>Correct!</h1>");
         //screen shows the correct answer
         $("#question").html(answerFact);
         //runs a function that shows the next question and restarts timer
@@ -237,7 +241,7 @@ function nextQuestion() {
     }
     else {
         //update answerFact
-        answerFact = "The correct answer was " + questions[questionNumber].answer +"<br>" + "<img src=" + questions[questionNumber].image + ">" + "<br>" + questions[questionNumber].fact;
+        answerFact = "The correct answer was " + questions[questionNumber].answer +"." + "<br>" + "<img src=" + questions[questionNumber].image + ">" + "<br>" + questions[questionNumber].fact;
         //resets header
         $("#questionNumber").html("<h1>Question " + questions[questionNumber].number + "</h1>");
         //shows next question
@@ -255,7 +259,7 @@ function nextQuestion() {
 }
 //adds in interval to nextQuestion()
 function runNextQuestion() {
-    setTimeout(nextQuestion, 5000);
+    setTimeout(nextQuestion, 7000);
 }
 //adds an interval to countdown()
 function runCountdown() {
@@ -295,8 +299,6 @@ function reset() {
     time = 15;
     //initializes time left to 15 seconds
     $("#timer").html(time);
-    //show timer
-    $("#timer").show();
     //resets the question number to 0
     questionNumber = 0;
     //resets wrong answer count to 0
@@ -311,7 +313,7 @@ function reset() {
     //display start button
     $("#start").css("display","initial");
     //reset quiz text
-    $("#questionNumber").html("Quiz");
+    $("#questionNumber").html("<h1>Roman Gods and Goddesses Quiz</h1>");
     //shows what the correct answer was
-    $("#question").html("This is where the question will go.");
+    $("#question").html("In this quiz, tell us the name of the described Roman God or Goddess based on the given description.<br><br>Watch your time though; you have only a limited time for each question!");
 }
