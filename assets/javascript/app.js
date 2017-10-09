@@ -9,7 +9,7 @@ var questions = [
         "answer":"Jupiter",
         "number":"1/13",
         "fact":"Father of pretty much the entirety of Rome by now. (Like seriously... try to tone it down, Jupiter)",
-        "image":'assets/images/jupiter.jpg'
+        "image":'assets/images/jupiter.JPG'
     },
 
     {
@@ -54,7 +54,7 @@ var questions = [
         "answer":"Mars",
         "number":"6/13",
         "fact":"Also Venus's lover. Hmm... Maybe there's a reason Cupid and Aeneas are so different...",
-        "image":'assets/images/mars.jpg'
+        "image":'assets/images/mars.JPG'
     },
 
     {
@@ -89,12 +89,12 @@ var questions = [
         "choices":["Maia","Bacchus","Uranus","Janus"],
         "answer":"Bacchus",
         "number":"10/13",
-        "fact":"His mother was mortal and his father was Zeus (surprise surprise). Jupiter gave birth to him from his leg... I can see why he drinks.",
+        "fact":"His mother was mortal and his father was Jupiter (surprise surprise). Jupiter gave birth to him from his leg... I can see why he drinks.",
         "image":'assets/images/bacchus.jpg'
     },
 
     {
-        "question":"Goddess and protector of women",
+        "question":"Goddess of fertility and protector of women",
         "choices":["Venus","Ceres","Juno","Diana"],
         "answer":"Juno",
         "number":"11/13",
@@ -181,7 +181,7 @@ function start() {
 
 //function is run when an answer button is pressed
 function userAnswer () {
-    //timer is st[opped
+    //timer is stopped
     stop();
     //checks if the answer is true or false
     if ($(this).text() === questions[questionNumber].answer) {
@@ -214,6 +214,8 @@ function questionEnd() {
     if (answerCorrect === true) {
         //screen shows use was correct
         $("#questionNumber").html("<h1>Correct!</h1>");
+        //reset answerFact
+        answerFact = "The correct answer was " + questions[questionNumber].answer + "." + "<br>" + "<img src=" + questions[questionNumber].image + ">" + "<br>" + questions[questionNumber].fact;
         //screen shows the correct answer
         $("#question").html(answerFact);
         //runs a function that shows the next question and restarts timer
@@ -222,6 +224,8 @@ function questionEnd() {
     else {
         //screen shows use was wrong
         $("#questionNumber").html("<h1>Wrong!</h1>");
+        //reset answerFact
+        answerFact = "The correct answer was " + questions[questionNumber].answer + "." + "<br>" + "<img src=" + questions[questionNumber].image + ">" + "<br>" + questions[questionNumber].fact;
         //screen shows the correct answer
         $("#question").html(answerFact);
         //runs a function that shows the next question and restarts timer
@@ -316,4 +320,6 @@ function reset() {
     $("#questionNumber").html("<h1>Roman Gods and Goddesses Quiz</h1>");
     //shows what the correct answer was
     $("#question").html("In this quiz, tell us the name of the described Roman God or Goddess based on the given description.<br><br>Watch your time though; you have only a limited time for each question!");
+    //resets correct answer
+    answerCorrect = null;
 }

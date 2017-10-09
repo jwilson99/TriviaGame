@@ -18,3 +18,11 @@ img {
 div {
     padding-right: 10px;
 }
+
+.answerbtn {
+    display: none;
+}
+
+.resetbtn {
+    display: none;
+}
